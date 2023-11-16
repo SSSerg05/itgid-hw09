@@ -1,16 +1,19 @@
-export const App = () => {
+import './App.css';
+import React from 'react';
+// import Button from './Button';
+import PlaceholderPost from './PlaceholderPost';
+import Comment from './Comment';
+import Comment2 from './Comment2';
+
+
+function App() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      {/* <PlaceholderPost /> */}
+      {/* <Comment/> */}
+      <Comment2/>
+    </>
   );
-};
+}
+
+export default App;
