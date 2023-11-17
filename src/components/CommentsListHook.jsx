@@ -1,14 +1,5 @@
-import { useEffect, useState } from "react";
 
-export const CommentsListHook = ({props}) => {
-  const [data, setData] = useState([...props])
-
-  useEffect( () => { 
-    console.log('work'); // увы тоже сработает один раз и все. 
-
-    return console.log('component did update');
-  }, [data]);
-
+export const CommentsListHook = ({data}) => {
 
   const onlyEven = () => {
 

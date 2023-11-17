@@ -4,26 +4,37 @@ export const PlaceholderPostHook = () => {
   const [data, setData] = useState([]);
 
   useEffect( () => {
-    try {
-      fetch("https://jsonplaceholder.typicode.com/users/1/posts")
-      .then(response => response.json())
-      .then(data => {
-          console.log(data);
-          this.setState({ data });
-      });
-    
-    } catch (error) {
-      console.log(error.message);
+
+    const getData = async () => {
+      try {
+        const controller = new AbortController();
+
+        await fetch("https://jsonplaceholder.typicode.com/users/1/posts", {signal:controller.signal} )
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setData(data);
+        });
+      
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
-  }, [data])
+    getData();
+  }, []);
 
   
   return (
-    <section>
-      <h2> Номер поста. Заголовок</h2>
-      <p>Тело поста</p>
-    </section>
+    <div>
+      <h1>Posts</h1>
+      { data.map((el, index) => (
+          <section key={el.id}>
+              <h2>{index+1}. {el.title}</h2>
+              <p>{el.body}</p>
+          </section>
+        ))}
+    </div>
   )
 }
 
